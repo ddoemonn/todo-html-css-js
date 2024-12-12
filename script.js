@@ -1,9 +1,7 @@
-// Select DOM elements
 const taskInput = document.getElementById("taskInput");
 const addTaskBtn = document.getElementById("addTaskBtn");
 const taskList = document.getElementById("taskList");
 
-// Add Task
 addTaskBtn.addEventListener("click", () => {
   const taskText = taskInput.value.trim();
   if (taskText === "") {
@@ -11,25 +9,20 @@ addTaskBtn.addEventListener("click", () => {
   }
 
   createTaskItem(taskText);
-  taskInput.value = ""; // Clear input
-  taskInput.focus(); // Focus back on input field
+  taskInput.value = "";
+  taskInput.focus();
 });
-
-// Create Task Item
 function createTaskItem(taskText) {
   const listItem = document.createElement("li");
   listItem.className = "task-item";
 
-  // Task Content
   const taskContent = document.createElement("span");
   taskContent.className = "task-content";
   taskContent.textContent = taskText;
 
-  // Buttons
   const buttons = document.createElement("div");
   buttons.className = "task-buttons";
 
-  // Edit Button
   const editBtn = document.createElement("button");
   editBtn.className = "edit-btn";
   editBtn.textContent = "Edit";
@@ -37,7 +30,6 @@ function createTaskItem(taskText) {
     handleEditTask(listItem, taskContent, editBtn);
   });
 
-  // Complete Button
   const completeBtn = document.createElement("button");
   completeBtn.className = "complete-btn";
   completeBtn.textContent = "Complete";
@@ -45,7 +37,7 @@ function createTaskItem(taskText) {
     listItem.classList.toggle("completed");
   });
 
-  // Delete Button
+
   const deleteBtn = document.createElement("button");
   deleteBtn.className = "delete-btn";
   deleteBtn.textContent = "Delete";
@@ -63,7 +55,6 @@ function createTaskItem(taskText) {
   taskList.appendChild(listItem);
 }
 
-// Handle Editing Task
 function handleEditTask(listItem, taskContent, editBtn) {
   if (editBtn.textContent === "Edit") {
     const editInput = document.createElement("input");
@@ -86,7 +77,6 @@ function handleEditTask(listItem, taskContent, editBtn) {
   }
 }
 
-// Save Edited Task
 function saveTask(listItem, editInput, taskContent, editBtn) {
   taskContent.textContent = editInput.value.trim() || taskContent.textContent;
   listItem.replaceChild(taskContent, editInput);
